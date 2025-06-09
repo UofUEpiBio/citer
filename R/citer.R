@@ -16,7 +16,7 @@
 #' @keywords internal
 #' @export
 #' @importFrom tools md5sum
-#' @importFrom utils citation
+#' @importFrom utils citation packageVersion
 citer_write_environment <- function(path = ".", overwrite = TRUE) {
   # Ensure the path is absolute
   pkg_path <- normalizePath(path, mustWork = TRUE)
@@ -45,7 +45,7 @@ citer_write_environment <- function(path = ".", overwrite = TRUE) {
 
   # Emplacing the citer version in the environment file
   env_file <- gsub(
-    "[{]{2} citer_version [}]{2}", packageVersion("citer"), env_file
+    "[{]{2} citer_version [}]{2}", utils::packageVersion("citer"), env_file
   )
 
   # Writing the environment file to a temporary file
@@ -125,7 +125,7 @@ citer_on_load <- function(path = ".") {
     if (!any(grepl("citation_on_load\\(\\)", onload_file))) {
 
       line_with_onload <- grepl(
-        "\\.onLoad\\s*<-", onload_file, value = TRUE
+        "\\.onLoad\\s*<-", onload_file
       ) |> which()
 
       onload_file[line_with_onload] <- paste0(
