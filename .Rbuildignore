@@ -1,0 +1,6 @@
+^Makefile$
+^README\.qmd$
+^LICENSE\.md$
+^CODE_OF_CONDUCT\.md$
+.*\.Rcheck$
+^\.github$
