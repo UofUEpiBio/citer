@@ -138,6 +138,15 @@ citer_on_load <- function(path = ".") {
 }
 
 #' Function to search for `.onLoad` function in the package
+#' @param path The path to the package directory. Defaults to the current
+#' working directory.
+#' @details
+#' This function searches for the `.onLoad` function in the package
+#' directory. It looks for R files in the `R` subdirectory of the package and
+#' checks if the `.onLoad` function is defined in any of them. If found, it
+#' returns the file names where the `.onLoad` function is defined.
+#' If no `.onLoad` function is found, it returns an empty character vector.
+#' @keywords internal
 #' @export
 citer_search_onLoad <- function(path) {
 

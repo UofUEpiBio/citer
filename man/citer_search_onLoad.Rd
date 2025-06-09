@@ -6,6 +6,18 @@
 \usage{
 citer_search_onLoad(path)
 }
+\arguments{
+\item{path}{The path to the package directory. Defaults to the current
+working directory.}
+}
 \description{
 Function to search for \code{.onLoad} function in the package
 }
+\details{
+This function searches for the \code{.onLoad} function in the package
+directory. It looks for R files in the \code{R} subdirectory of the package and
+checks if the \code{.onLoad} function is defined in any of them. If found, it
+returns the file names where the \code{.onLoad} function is defined.
+If no \code{.onLoad} function is found, it returns an empty character vector.
+}
+\keyword{internal}
