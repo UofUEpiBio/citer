@@ -1,0 +1,19 @@
+Package: citer
+Type: Package
+Title: Fast Agent-Based Epi Models
+Version: 0.0.9000
+Depends: R (>= 4.1.0)
+Authors@R: c(
+  person(given="George", family="Vega Yon", role=c("aut", "cre"),
+  email="g.vegayon@gmail.com", comment = c(ORCID = "0000-0002-3171-0844")),
+  person("Centers for Disease Control and Prevention", role="fnd", comment = "Award number 1U01CK000585; 75D30121F00003"
+  ))
+Description: Helper functions to boost your other R packages' citation.
+URL: https://github.com/UofUEpiBio/citer,
+    https://uofuepibio.github.io/citer/,
+BugReports: https://github.com/UofUEpiBio/citer/issues
+License: MIT + file LICENSE
+RoxygenNote: 7.3.2
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+VignetteBuilder: quarto
