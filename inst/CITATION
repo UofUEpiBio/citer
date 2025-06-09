@@ -1,0 +1,12 @@
+year <- 2025
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{{citer: Boosting your R packages' citations}}",
+         author = c(
+          person("George", "Vega Yon", comment = c(ORCID = "0000-0002-3171-0844"))
+          ),
+         year = year,
+         note = note,
+         url = "https://github.com/UofUEpiBio/citer", 
+         header = "Citing the GitHub R package:")

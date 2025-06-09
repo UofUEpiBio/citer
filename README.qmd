@@ -2,6 +2,10 @@
 format: gfm
 ---
 
+[![R-CMD-check-final](https://github.com/UofUEpiBio/citer/actions/workflows/r.yml/badge.svg)](https://github.com/UofUEpiBio/citer/actions/workflows/r.yml)
+[![pkgdown website](https://github.com/UofUEpiBio/citer/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/UofUEpiBio/citer/actions/workflows/pkgdown.yaml)
+[![Pre-commit](https://github.com/UofUEpiBio/citer/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/UofUEpiBio/citer/actions/workflows/pre-commit.yaml)
+
 # citer: Boosting your R packages' citations
 
 Although used a core of scientific endeavors, citations of scientific software are often overlooked. This package provides tools to boost citation of R packages, making it easier for users to cite the software they use in their research.

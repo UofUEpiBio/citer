@@ -11,11 +11,9 @@ citation_on_load <- function() {
   message("Thank you for using ", pkg_name, "!")
   message("Please consider citing it in your work. ", appendLF = FALSE)
   message(
-    "You can find the citation information by running `citation('",
+    "You can find the citation information by running `citation(\"",
     pkg_name,
-    "')`:"
+    "\")`."
   )
-
-  citation(package = pkg_name)
 
 }

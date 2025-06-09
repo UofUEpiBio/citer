@@ -91,4 +91,78 @@ citer_on_load <- function(path = ".") {
   pkg_path <- normalizePath(path, mustWork = TRUE)
   citer_write_environment(pkg_path, overwrite = TRUE)
 
+  # Looking for .onLoad function in the package
+  onload_files <- citer_search_onLoad(pkg_path)
+
+  # If none found, we use the default environment file
+  # to append the .onLoad function
+  if (length(onload_files) == 0) {
+    onload_files <- file.path(
+      pkg_path, "R", "citer_environment.R"
+    )
+
+    cat(
+      ".onLoad <- function(libname, pkgname) {\n",
+      "  citation_on_load()\n",
+      "}\n",
+      file = onload_files,
+      append = TRUE
+    )
+  } else {
+    # If we found .onLoad files, we append the citation function
+    # to the first one found
+    onload_file_fn <- onload_files[1]
+
+    # Checking if the `citation_on_load()` call is already present
+    onload_file <- readLines(onload_file_fn, warn = FALSE)
+    if (!any(grepl("citation_on_load\\(\\)", onload_file))) {
+
+      line_with_onload <- grepl(
+        "\\.onLoad\\s*<-", onload_file, value = TRUE
+      ) |> which()
+
+      onload_file[line_with_onload] <- paste0(
+        onload_file[line_with_onload],
+        "\n  citation_on_load()"
+      )
+
+    }
+  }
+}
+
+#' Function to search for `.onLoad` function in the package
+#' @export
+citer_search_onLoad <- function(path) {
+
+  pkg_path <- normalizePath(path, mustWork = TRUE)
+
+  # Looking for .onLoad() function defined in the package
+  r_files <- list.files(
+    file.path(pkg_path, "R"),
+    pattern = "\\.R$",
+    full.names = TRUE
+  )
+
+  # Reading all R files and checking for .onLoad function
+  has_onload <- sapply(r_files, \(fn) {
+
+    lines <- readLines(fn, warn = FALSE)
+    if (any(grepl("\\.onLoad\\s*<-", lines))) {
+      # Souring the file in a new environment to see
+      # if the .onLoad function is defined
+      env <- new.env()
+      source(fn, local = env, echo = FALSE)
+
+      if (exists(".onLoad", envir = env, inherits = FALSE)) {
+        return(TRUE)
+      }
+
+    }
+
+    return(FALSE)
+
+  })
+
+  r_files[which(has_onload)]
+
 }
