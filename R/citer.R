@@ -43,6 +43,11 @@ citer_write_environment <- function(path = ".", overwrite = TRUE) {
     "[{]{2} pkg_name [}]{2}", pkg_name, env_file
   )
 
+  # Emplacing the citer version in the environment file
+  env_file <- gsub(
+    "[{]{2} citer_version [}]{2}", packageVersion("citer"), env_file
+  )
+
   # Writing the environment file to a temporary file
   # we will skip the first line which contains the hash placeholder
   # and replace it with the actual hash later
@@ -52,7 +57,9 @@ citer_write_environment <- function(path = ".", overwrite = TRUE) {
   # Replacing the hash placeholder with the actual hash
   hash <- tools::md5sum(temp_file)
   env_file <- gsub(
-    "[{]{2} pkg_hash [}]{2}", hash, env_file
+    "^(# file_version:\\s*).+",
+    paste0("\\1", hash),
+    env_file
   )
 
   # Saving the file in the package directory (if the
