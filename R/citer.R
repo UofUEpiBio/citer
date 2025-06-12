@@ -133,6 +133,12 @@ citer_on_load <- function(path = ".") {
         "\n  citation_on_load()"
       )
 
+      cat(
+        onload_file,
+        file = onload_file_fn,
+        sep = "\n"
+      )
+
     }
   }
 }
